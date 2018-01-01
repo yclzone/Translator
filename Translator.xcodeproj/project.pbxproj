@@ -13,6 +13,7 @@
 		0383AA601FFA4FF800B73725 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0383AA5F1FFA4FF800B73725 /* Assets.xcassets */; };
 		0383AA631FFA4FF800B73725 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0383AA611FFA4FF800B73725 /* LaunchScreen.storyboard */; };
 		0383AA661FFA4FF800B73725 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0383AA651FFA4FF800B73725 /* main.m */; };
+		0383AA6E1FFA502600B73725 /* MTTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0383AA6D1FFA502600B73725 /* MTTranslator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		0383AA621FFA4FF800B73725 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0383AA641FFA4FF800B73725 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0383AA651FFA4FF800B73725 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0383AA6C1FFA502600B73725 /* MTTranslator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTranslator.h; sourceTree = "<group>"; };
+		0383AA6D1FFA502600B73725 /* MTTranslator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTranslator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 				0383AA611FFA4FF800B73725 /* LaunchScreen.storyboard */,
 				0383AA641FFA4FF800B73725 /* Info.plist */,
 				0383AA651FFA4FF800B73725 /* main.m */,
+				0383AA6C1FFA502600B73725 /* MTTranslator.h */,
+				0383AA6D1FFA502600B73725 /* MTTranslator.m */,
 			);
 			path = Translator;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0383AA6E1FFA502600B73725 /* MTTranslator.m in Sources */,
 				0383AA5B1FFA4FF800B73725 /* ViewController.m in Sources */,
 				0383AA661FFA4FF800B73725 /* main.m in Sources */,
 				0383AA581FFA4FF800B73725 /* AppDelegate.m in Sources */,
