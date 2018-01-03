@@ -18,7 +18,7 @@ MTScope const MTScopeTTS = @"tts";
 MTScope const MTScopeTEXT = @"text";
 MTScope const MTScopeSPEECH = @"speech";
 
-static NSString * const kAPIKey = @"";
+static NSString * const kMicrosoftTranslatorTextAPIKey = @"";
 
 @implementation MTTranslator
 + (instancetype)sharedTranslator {
@@ -99,4 +99,57 @@ static NSString * const kAPIKey = @"";
     [task resume];
     
 }
+
+- (void)authenticationTokenWithCompletion:(MTHandler)completon {
+    NSString *baseURL = @"https://api.cognitive.microsoft.com/sts/v1.0/issueToken";
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    request.URL = [NSURL URLWithString:baseURL];
+    request.HTTPMethod = @"POST";
+    [request setValue:kMicrosoftTranslatorTextAPIKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (completon) {
+            completon(data, error);
+        }
+        NSString *token = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", token);
+    }];
+    [task resume];
+}
+
+- (NSString *)queryStringWithDict:(NSDictionary *)dict {
+    NSMutableString *query = [NSMutableString string];
+    for (NSString *key in dict) {
+        id value = dict[key];
+        [query appendFormat:@"&%@=%@", key, value];
+    }
+    if (query.length > 1) {
+        return [query substringFromIndex:1];
+    }
+    return [query copy];
+}
+
+- (void)translateText:(NSString *)text fromLanguage:(NSString *)from toLanguage:(NSString *)to {
+    NSString *baseURL = @"https://api.microsofttranslator.com/V2/Http.svc/Translate";
+    NSDictionary *parameters = @{
+                                 @"text": text,
+                                 @"from": from,
+                                 @"to": to,
+                                 @"contentType": @"text/html",
+                                 };
+    NSString *query = [self queryStringWithDict:parameters];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    NSString *url = [NSString stringWithFormat:@"%@?%@", baseURL, query];
+    request.URL = [NSURL URLWithString:url];
+//    request.HTTPMethod = @"POST";
+    [request setValue:kMicrosoftTranslatorTextAPIKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSString *token = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", token);
+    }];
+    [task resume];
+}
+
+
 @end

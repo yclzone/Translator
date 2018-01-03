@@ -18,4 +18,7 @@ FOUNDATION_EXPORT MTScope const MTScopeSPEECH;
 @interface MTTranslator : NSObject
 + (instancetype)sharedTranslator;
 - (void)allLanguageSupportedWithLanguage:(NSString *)language scope:(MTScope)scope completion:(MTHandler)completion;
+
+- (void)authenticationTokenWithCompletion:(MTHandler)completon;
+- (void)translateText:(NSString *)text fromLanguage:(NSString *)from toLanguage:(NSString *)to;
 @end

@@ -27,11 +27,12 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    MTScope scope = MTScopeTTS;
-    [[MTTranslator sharedTranslator] allLanguageSupportedWithLanguage:@"zh" scope:scope completion:^(id data, NSError *error) {
-        //
-    }];
+//    MTScope scope = MTScopeTTS;
+//    [[MTTranslator sharedTranslator] allLanguageSupportedWithLanguage:@"zh" scope:scope completion:^(id data, NSError *error) {
+//        //
+//    }];
     
+    [[MTTranslator sharedTranslator] translateText:@"Hello" fromLanguage:@"en" toLanguage:@"zh"];
     
     
 }
